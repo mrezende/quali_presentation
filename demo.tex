@@ -11,6 +11,7 @@
 \usepackage[portuguese]{babel}
 \usepackage{amsmath}
 \usepackage{bm}
+\usepackage{longtable}
 
 
 \usepackage{xspace}
@@ -101,7 +102,38 @@ Recuperação de trecho de código-fonte consiste em recuperar um trecho de cód
 	\end{itemize}
 \end{frame}
 
+\begin{frame}{Avaliação}
+   \begin{center}
+       \begin{tabular}{|p{4cm}|p{4cm}|}
+            \hline
+            Dados de treinamento & Conjunto de pares de questões e trechos de código-fonte em Pytrhon coletados do Stack Overflow por \cite{yao-2018} \\ 
+            \hline
+            Dados para avaliação final & Conjunto de dados anotados manualmente e disponibilizados por \cite{yao-2018} \\
+            \hline
+            Métrica de desempenho & \emph{MRR} \\
+            \hline
+            Arquiteturas de referência para comparação & \begin{itemize}
+                \item Embedding
+                \item Rede neural com mecanismo de atenção proposto por \cite{cambronero-deep-learning-code-search:2019}
+            \end{itemize} \\
+            \hline
+       \end{tabular}
+   \end{center}
+\end{frame}
 
+\begin{frame}{Avaliação}
+   \begin{center}
+       \begin{tabular}{|p{4cm}|p{4cm}|}
+            \hline
+            Análise dos resultados & \begin{itemize}
+                \item Inspeção manual
+                \item Análise dos piores casos
+                \item Patologia das redes neurais \cite{feng-pathologies-of-neural-models:2018}
+            \end{itemize} \\
+            \hline
+       \end{tabular}
+   \end{center}
+\end{frame}
 
 \begin{frame}{Avaliação}
 	\begin{figure}[h]
@@ -117,7 +149,7 @@ Recuperação de trecho de código-fonte consiste em recuperar um trecho de cód
 	\begin{figure}[h]
         \centering
         \includegraphics[height=0.80\textheight]{figuras/final_evaluation_process.pdf}
-        \caption{Ilustração do processo de treinamento e escolha do modelo para a avaliação final. Processo proposto por \cite{iyer-etal-2016-summarizing}.}
+        \caption{Ilustração do processo de avaliação final a partir do modelo escolhido no processo de treinamento. Processo proposto por \cite{iyer-etal-2016-summarizing}.}
         \label{fig:test1}
     \end{figure}
 \end{frame}
