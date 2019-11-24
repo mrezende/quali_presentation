@@ -12,6 +12,7 @@
 \usepackage{amsmath}
 \usepackage{bm}
 
+\usepackage{minted}
 
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
@@ -145,13 +146,72 @@ Recuperação de trecho de código-fonte consiste em recuperar um trecho de cód
 
 \section{Experimento piloto}
 
+
+\begin{frame}{Resultados preliminares}
+  \begin{table}[h]
+\centering
+\begin{tabular}{ p{3cm} p{3cm} }
+ \hline
+ \textbf{Modelos} & \textbf{Resultados (MRR)}\\
+ \hline
+ Embedding & $0,52 \pm 0,01$\\
+ 
+ \textcolor{blue}{\textbf{CNN}} & \textcolor{blue}{$\bm{0,58} \pm \bm{0,01}$} \\
+ 
+ \textbf{bi-LSTM-CNN} & $\bm{0,60} \pm \bm{0,02}$\\
+ \hline
+\end{tabular}
+\caption{Resultado preliminar do modelo bi-LSTM-CNN proposto em comparação a outros dois modelos (CNN e Embedding). Estes resultados foram obtidos a partir da amostra EVAL.}
+\label{table:resultados-preliminares}
+\end{table}
+\end{frame}
+
+\begin{frame}{Histograma das posições dos trechos de código-fonte relevantes}
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{figuras/histogram_results.png}
+    \label{fig:histogram-results}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{Exemplos}
+        \alert{Python and appending items to text and \colorbox{green}{excel} \colorbox{green}{file}}\footnote{{\tiny \url{https://stackoverflow.com/questions/24593478/python-and-appending-items-to-text-and-excel-file}}}
+        \metroset{block=fill}
+        \begin{exampleblock}{BiLSTM-CNN}
+        \begin{minted}[breaklines,fontsize=\scriptsize, escapeinside=||]{python}
+Yvalues = [1, 2, 3, 4, 5]
+file_out = |\colorbox{green}{open}|('file.csv','wb')
+mywriter=|\colorbox{green}{csv}|.|\colorbox{green}{writer}|(file_out, delimiter = '\n')
+mywriter.|\colorbox{green}{writerow}|(Yvalues)
+file_out.close()
+        \end{minted}
+        \end{exampleblock}
+        \begin{alertblock}{CNN}
+        \begin{minted}[breaklines,fontsize=\scriptsize, escapeinside=||]{python}
+import csv
+
+with |\colorbox{green}{open}|("output.csv", "wb") as f:
+    writer = |\colorbox{green}{cwv}|.|\colorbox{green}{writer}|(f)
+    writer.|\colorbox{green}{writerows}|(a)
+    \end{minted}
+    \end{alertblock}
+    
+\end{frame}
+
 \section{Próximos passos}
 
+\begin{frame}{Próximas tarefas}
+    \begin{itemize}
+        \item Implementação da arquitetura proposta por \cite{cambronero-deep-learning-code-search:2019}
+        \item Adição de regularização aos modelos
+        \item Coleta e análise dos resultados
+    \end{itemize}
+\end{frame}
 
 
 {\setbeamercolor{palette primary}{fg=black, bg=yellow}
 \begin{frame}[standout]
-  Questions?
+  Perguntas?
 \end{frame}
 }
 
