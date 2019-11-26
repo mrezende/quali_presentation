@@ -11,13 +11,14 @@
 \usepackage[portuguese]{babel}
 \usepackage{amsmath}
 \usepackage{bm}
+\usepackage{cleveref}
 
 \usepackage{minted}
 
 \usepackage{xspace}
 \newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
 
-\title{Exame de qualificação de mestrado}
+\title{\includegraphics[scale=0.15]{figuras/logo-ipt.pdf} \hfill \includegraphics[scale=0.1]{figuras/usp-logo.pdf}\\Exame de qualificação de mestrado}
 \subtitle{Aprendizagem de representação através do uso de redes neurais convolucionais na recuperação de trecho de código-fonte}
 % \date{\today}
 \date{}
@@ -29,10 +30,7 @@
 
 \maketitle
 
-\begin{frame}{Índice}
-  \setbeamertemplate{section in toc}[sections numbered]
-  \tableofcontents%[hideallsubsections]
-\end{frame}
+
 
 \section[Intro]{Introdução}
 
@@ -40,7 +38,7 @@
 \begin{frame}[fragile]{Definição}
 
 \begin{quote}
-Recuperação de trecho de código-fonte consiste em recuperar um trecho de código a partir de um repositório de códigos-fontes, de modo a atender a intenção do desenvolvedor, expressa em linguagem natural \cite{cambronero-deep-learning-code-search:2019, Gu-deep-code-search:2018}.     
+Recuperação de trecho de código-fonte consiste em recuperar um trecho de código a partir de um repositório de códigos-fontes, de modo a atender a intenção do desenvolvedor, expressa em linguagem natural \footnote{Jose Cambronero, Hongyu Li, Seohyun Kim, Koushik Sen, and Satish Chandra. 2019. When deep learning met code search.}\footnote{Xiaodong Gu, Hongyu Zhang, and Sunghun Kim. 2018. Deep code search.}.     
 \end{quote}
 
 
@@ -97,10 +95,10 @@ Recuperação de trecho de código-fonte consiste em recuperar um trecho de cód
     \end{figure}
 \end{frame}
 
-\section{Perguntas}
+\section{Questões}
 
 
-\begin{frame}{Perguntas}
+\begin{frame}{Questões}
 	\begin{itemize}
 	    \item A aprendizagem de representação através do CNN auxilia na recuperação de trecho de código-fonte?
 	    \item O CNN é capaz de extrair as características mais relevantes de modo a facilitar o modelo a encontrar uma correlação entre as questões e os trechos de código-fonte?
@@ -115,16 +113,13 @@ Recuperação de trecho de código-fonte consiste em recuperar um trecho de cód
    \begin{center}
        \begin{tabular}{|p{4cm}|p{4cm}|}
             \hline
-            Dados de treinamento & Conjunto de pares de questões e trechos de código-fonte em Pytrhon coletados do Stack Overflow por \cite{yao-2018} \\ 
+            Dados de treinamento & Conjunto de pares de questões e trechos de código-fonte em Python coletados do Stack Overflow por Yao et al. (2018)\footnote{\label{foot:yao-staqc}Yao, Ziyu and Weld, Daniel S. and Chen, Wei-Peng and Sun, Huan. 2018. StaQC: A Systematically Mined Question-Code Dataset from Stack Overflow} \\ 
             \hline
-            Dados para avaliação final & Conjunto de dados anotados manualmente e disponibilizados por \cite{yao-2018} \\
+            Dados para avaliação final & Conjunto de dados anotados manualmente e disponibilizados por Yao et al. (2018)\textsuperscript{\ref{foot:yao-staqc}} \\
             \hline
             Métrica de desempenho & \emph{MRR} \\
-            \hline
-            Arquiteturas de referência para comparação & \begin{itemize}
-                \item Embedding
-                \item Rede neural com mecanismo de atenção proposto por \cite{cambronero-deep-learning-code-search:2019}
-            \end{itemize} \\
+            
+            
             \hline
        \end{tabular}
    \end{center}
@@ -133,11 +128,26 @@ Recuperação de trecho de código-fonte consiste em recuperar um trecho de cód
 \begin{frame}{Avaliação}
    \begin{center}
        \begin{tabular}{|p{4cm}|p{4cm}|}
+       \hline
+            Arquiteturas de referência para comparação & \begin{itemize}
+                \item Embedding
+                \item Rede neural com mecanismo de atenção proposto por Cambronero et al. (2019)\footnote{Jose Cambronero, Hongyu Li, Seohyun Kim, Koushik Sen, and Satish Chandra. 2019. When deep learning met code search.}
+            \end{itemize} \\
+            
+            \hline
+       \end{tabular}
+   \end{center}
+\end{frame}
+
+\begin{frame}{Avaliação}
+   \begin{center}
+       \begin{tabular}{|p{4cm}|p{4cm}|}
+       
             \hline
             Análise dos resultados & \begin{itemize}
                 \item Inspeção manual
                 \item Análise dos piores casos
-                \item Patologia das redes neurais \cite{feng-etal-2018-pathologies}
+                \item Patologia das redes neurais (Feng et al. , 2018)\footnote{Shi Feng, Eric Wallace, Alvin Grissom II, Mohit Iyyer, Pedro Rodriguez, Jordan Boyd-Graber. 2018. Pathologies of Neural Models Make Interpretations Difficult.}
             \end{itemize} \\
             \hline
        \end{tabular}
@@ -147,7 +157,7 @@ Recuperação de trecho de código-fonte consiste em recuperar um trecho de cód
 \section{Experimento piloto}
 
 
-\begin{frame}{Resultados preliminares}
+\begin{frame}{Resultados preliminares\footnote{Marcelo de Rezende Martins e Marco Aurélio Gerosa. 2019. Um estudo preliminar sobre o uso de uma arquitetura deep learning para seleção de respostas no problema de recuperação de trecho de código-fonte.}}
   \begin{table}[h]
 \centering
 \begin{tabular}{ p{3cm} p{3cm} }
@@ -161,8 +171,7 @@ Recuperação de trecho de código-fonte consiste em recuperar um trecho de cód
  \textbf{bi-LSTM-CNN} & $\bm{0,60} \pm \bm{0,02}$\\
  \hline
 \end{tabular}
-\caption{Resultado preliminar do modelo bi-LSTM-CNN proposto em comparação a outros dois modelos (CNN e Embedding). Estes resultados foram obtidos a partir da amostra EVAL.}
-\label{table:resultados-preliminares}
+\caption[Resultado preliminar]{Resultado preliminar do modelo CNN em comparação com outras duas arquiteturas (bi-LSTM com CNN e Embedding). Estes resultados foram obtidos a partir da amostra EVAL.}
 \end{table}
 \end{frame}
 
@@ -202,7 +211,7 @@ with |\colorbox{green}{open}|("output.csv", "wb") as f:
 
 \begin{frame}{Próximas tarefas}
     \begin{itemize}
-        \item Implementação da arquitetura proposta por \cite{cambronero-deep-learning-code-search:2019}
+        \item Implementação da arquitetura proposta por Cambronero et al. (2019)\footnote{Jose Cambronero, Hongyu Li, Seohyun Kim, Koushik Sen, and Satish Chandra. 2019. When deep learning met code search.}
         \item Adição de regularização aos modelos
         \item Coleta e análise dos resultados
     \end{itemize}
@@ -219,11 +228,6 @@ with |\colorbox{green}{open}|("output.csv", "wb") as f:
 
 
 
-\begin{frame}[allowframebreaks]{References}
 
-  \bibliography{demo}
-  \bibliographystyle{abbrv}
-
-\end{frame}
 
 \end{document}
